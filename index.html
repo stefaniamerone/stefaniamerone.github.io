@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================================
+  PERSONAL ACADEMIC WEBSITE  —  single-file, no build step
+  ============================================================================
+  HOW TO EDIT THIS FILE
+  - Everything you need to change is marked with  <!-- EDIT: ... -->  comments.
+  - Search the file for the word  EDIT  to jump between them.
+  - It is one file. To change text, change the words between the > and < of a
+    tag. Example:   <h1>Jane Doe</h1>   ->   <h1>Your Name</h1>
+  - Your photo: put a file named  profile.jpg  in the same folder as this file.
+  - There is NO build step. What you commit is what appears on the site.
+  ============================================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- EDIT: browser tab title. Keep it as your name — it is what shows in search results and bookmarks. -->
+  <title>Jane Doe — Economics</title>
+
+  <!-- EDIT: one-sentence description used by Google and when the link is shared. -->
+  <meta name="description" content="Jane Doe is a PhD candidate in economics working in decision theory, behavioral economics, and microeconomic theory." />
+
+  <!-- Fonts. Loaded from Google Fonts; no account or install needed. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ------------------------------------------------------------------
+       DESIGN TOKENS
+       Change a value here once and it updates everywhere on the site.
+       ------------------------------------------------------------------ */
+    :root {
+      --paper:      #FBFBFA;  /* page background — a quiet near-white       */
+      --ink:        #16161D;  /* primary text — near-black with a hint of indigo */
+      --muted:      #66666E;  /* secondary text: dates, affiliations, notes */
+      --accent:     #3D5A78;  /* a restrained slate-blue for links & rules  */
+      --accent-dim: #7C93A8;  /* lighter accent for hovers                  */
+      --rule:       #E6E5DF;  /* hairline dividers                          */
+      --card:       #F4F5F2;  /* the job-market-paper highlight block       */
+
+      --serif: "Spectral", Georgia, "Times New Roman", serif;
+      --sans:  "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+      --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      --measure: 40rem;      /* max reading width for body text            */
+      --page:    46rem;      /* max width of the whole content column      */
+    }
+
+    /* ------------------------------------------------------------------
+       BASE
+       ------------------------------------------------------------------ */
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: color .15s ease, border-color .15s ease;
+    }
+    a:hover { color: var(--accent-dim); border-color: var(--accent-dim); }
+
+    /* Visible keyboard focus — accessibility floor, do not remove. */
+    a:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ------------------------------------------------------------------
+       NAV
+       ------------------------------------------------------------------ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 251, 250, 0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: var(--page);
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+      border: none;
+    }
+    .nav-links { display: flex; gap: 1.4rem; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      border: none;
+      text-transform: lowercase;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ------------------------------------------------------------------
+       HERO
+       ------------------------------------------------------------------ */
+    header.hero {
+      padding: 4.5rem 0 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-grid {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .portrait {
+      flex: 0 0 auto;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--card);
+      /* Placeholder look until you add profile.jpg */
+      display: grid;
+      place-items: center;
+      color: var(--accent-dim);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-align: center;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 2.7rem;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.6rem;
+    }
+    .tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--ink);
+      max-width: var(--measure);
+      margin: 0 0 1.1rem;
+    }
+    .meta-row {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.9rem;
+    }
+    .meta-row a { color: var(--muted); border: none; }
+    .meta-row a:hover { color: var(--accent); }
+
+    /* ------------------------------------------------------------------
+       SECTIONS
+       ------------------------------------------------------------------ */
+    section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: none; }
+
+    /* The mono "eyebrow" label above each section — the site's signature.
+       It echoes the typewritten header of a working paper. */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .eyebrow::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    section p { max-width: var(--measure); }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin: 0 0 1.2rem;
+    }
+
+    /* ------------------------------------------------------------------
+       RESEARCH ENTRIES
+       ------------------------------------------------------------------ */
+    .paper { margin: 0 0 2.4rem; }
+    .paper:last-child { margin-bottom: 0; }
+
+    .paper-title {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.18rem;
+      line-height: 1.35;
+      margin: 0 0 0.3rem;
+    }
+    .paper-authors { font-size: 0.95rem; color: var(--muted); margin: 0 0 0.5rem; }
+    .paper-venue { font-style: italic; color: var(--ink); }
+
+    /* Native expandable abstract — no JavaScript, accessible by default. */
+    details.abstract { margin: 0.6rem 0 0; max-width: var(--measure); }
+    details.abstract summary {
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      list-style: none;
+    }
+    details.abstract summary::-webkit-details-marker { display: none; }
+    details.abstract summary::before { content: "+ "; }
+    details.abstract[open] summary::before { content: "\2212  "; } /* minus sign */
+    details.abstract p {
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin: 0.7rem 0 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .paper-links {
+      margin: 0.6rem 0 0;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      display: flex;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .paper-links a { border: none; color: var(--accent); }
+    .paper-links a:hover { color: var(--accent-dim); }
+
+    /* ------------------------------------------------------------------
+       JOB MARKET PAPER — the one place we spend visual emphasis, because
+       it is the one thing a hiring committee is looking for.
+       ------------------------------------------------------------------ */
+    .jmp {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1.6rem 1.8rem;
+      margin: 0 0 2.4rem;
+    }
+    .jmp .flag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.7rem;
+    }
+
+    /* ------------------------------------------------------------------
+       FOOTER
+       ------------------------------------------------------------------ */
+    footer {
+      padding: 2.5rem 0 3.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ------------------------------------------------------------------
+       RESPONSIVE
+       ------------------------------------------------------------------ */
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      h1 { font-size: 2.1rem; }
+      .hero-grid { flex-direction: column; gap: 1.6rem; }
+      .nav-links { gap: 1rem; }
+      header.hero { padding: 3rem 0 2.5rem; }
+    }
+
+    /* Respect users who ask for less motion. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav>
+    <div class="nav-inner">
+      <!-- EDIT: your name -->
+      <a href="#top" class="nav-name">Jane Doe</a>
+      <div class="nav-links">
+        <a href="#about">about</a>
+        <a href="#research">research</a>
+        <a href="#cv">cv</a>
+        <a href="#contact">contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <!-- PHOTO: add a file named profile.jpg beside this file, then
+             REPLACE this whole <div> with:
+             <img class="portrait" src="profile.jpg" alt="Jane Doe" /> -->
+        <div class="portrait">add<br>profile.jpg</div>
+
+        <div>
+          <!-- EDIT: your name -->
+          <h1>Jane Doe</h1>
+
+          <!-- EDIT: one line on what you study. Keep it a real sentence,
+               not a keyword list. This is the first thing anyone reads. -->
+          <p class="tagline">I study how people make decisions under uncertainty,
+             bridging microeconomic theory and behavioral evidence.</p>
+
+          <!-- EDIT: affiliation and contact metadata. -->
+          <div class="meta-row">
+            <span>PhD Candidate, Economics</span>
+            <span>University of Somewhere</span>
+            <a href="mailto:jane.doe@somewhere.edu">jane.doe@somewhere.edu</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== ABOUT ==================== -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <!-- EDIT: 2–4 sentences. Who you are, your fields, your placement year,
+           and one line on the through-line of your research. -->
+      <p>I am a PhD candidate in economics at the University of Somewhere,
+         on the job market in 2026&ndash;27. My research is in decision theory,
+         behavioral economics, and microeconomic theory. I am interested in
+         axiomatic models of choice and in what departures from expected-utility
+         behavior reveal about the underlying preferences that generate them.</p>
+      <p>Before my PhD I completed an MSc at Elsewhere. I am on the 2026&ndash;27
+         economics job market.</p>
+    </div>
+  </section>
+
+  <!-- ==================== RESEARCH ==================== -->
+  <section id="research">
+    <div class="wrap">
+      <p class="eyebrow">Research</p>
+
+      <!-- ---- JOB MARKET PAPER (highlighted) ---- -->
+      <div class="jmp">
+        <p class="flag">Job Market Paper</p>
+        <!-- EDIT: title -->
+        <h3 class="paper-title">Ambiguity, Attention, and the Structure of Choice</h3>
+        <!-- EDIT: coauthors, or delete this line if solo-authored -->
+        <p class="paper-authors">Solo-authored</p>
+
+        <details class="abstract">
+          <summary>Abstract</summary>
+          <!-- EDIT: paste your abstract here -->
+          <p>This paper develops an axiomatic framework in which an agent's
+             response to ambiguity is mediated by costly attention. [Replace
+             this with your actual abstract. Keep it to a single tight paragraph;
+             committees skim.]</p>
+        </details>
+
+        <div class="paper-links">
+          <!-- EDIT: link targets. Put the PDF in this folder and name it, e.g.,
+               jmp.pdf, then the href below will just work. -->
+          <a href="jmp.pdf">PDF</a>
+          <a href="jmp-slides.pdf">Slides</a>
+        </div>
+      </div>
+
+      <!-- ---- OTHER PAPERS ----
+           Duplicate one .paper block per paper. Order: published first,
+           then R&Rs, then working papers, then work in progress. -->
+
+      <div class="paper">
+        <h3 class="paper-title">A Representation Theorem for Reference-Dependent Preferences</h3>
+        <p class="paper-authors">with A. Coauthor</p>
+        <p><span class="paper-venue">Revise and resubmit, Journal of Economic Theory</span></p>
+        <details class="abstract">
+          <summary>Abstract</summary>
+          <p>[Abstract goes here.]</p>
+        </details>
+        <div class="paper-links">
+          <a href="paper2.pdf">PDF</a>
+        </div>
+      </div>
+
+      <div class="paper">
+        <h3 class="paper-title">Stochastic Choice and Deliberate Randomization</h3>
+        <p class="paper-authors">Solo-authored</p>
+        <p><span class="paper-venue">Working paper, 2026</span></p>
+        <details class="abstract">
+          <summary>Abstract</summary>
+          <p>[Abstract goes here.]</p>
+        </details>
+        <div class="paper-links">
+          <a href="paper3.pdf">PDF</a>
+        </div>
+      </div>
+
+      <!-- WORK IN PROGRESS: titles only, no links, is standard. -->
+      <p style="font-family:var(--mono);font-size:0.78rem;letter-spacing:0.03em;color:var(--accent);text-transform:uppercase;margin-top:2.4rem;">Work in Progress</p>
+      <ul style="max-width:var(--measure);color:var(--ink);padding-left:1.1rem;">
+        <li>&ldquo;A Title in Progress&rdquo; (with A. Coauthor)</li>
+        <li>&ldquo;Another Title in Progress&rdquo;</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== CV ==================== -->
+  <section id="cv">
+    <div class="wrap">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <!-- EDIT: put cv.pdf in this folder. Update the date when you update it. -->
+      <p>My full CV is available as a PDF: <a href="cv.pdf">download CV</a>
+         (last updated <span>Month 2026</span>).</p>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <!-- EDIT: email, office, and profile links. Delete any you don't use. -->
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:jane.doe@somewhere.edu">jane.doe@somewhere.edu</a><br />
+        <strong>Office:</strong> Department of Economics, University of Somewhere<br />
+        <strong>Elsewhere:</strong>
+        <a href="https://scholar.google.com/">Google Scholar</a> &middot;
+        <a href="https://ideas.repec.org/">RePEc</a> &middot;
+        <a href="https://orcid.org/">ORCID</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="wrap">
+      <!-- EDIT: your name and year -->
+      &copy; 2026 Jane Doe. Built with plain HTML on GitHub Pages.
+    </div>
+  </footer>
+
+</body>
+</html>
