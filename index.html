@@ -198,6 +198,23 @@
   text-align: justify;
 }
 
+    .hero-links {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.hero-links a {
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.hero-links a:hover {
+  border-color: var(--accent);
+}
+
     h1 {
 
   font-family: var(--serif);
@@ -304,7 +321,7 @@
   <div class="nav-inner">
   <div class="nav-links">
   <a href="#top">Home</a>
-  <a href="#CV">CV</a>
+ <!-- <a href="#CV">CV</a> -->
   <a href="#Research">Research</a>
   <a href="#Contact">Contact</a>
 </div>
@@ -328,19 +345,13 @@
           I will be on the job market in 2026&ndash;27. </p>
         </div>
 
+        <div class="hero-links">
+  <a href="cv.pdf">Download my CV</a>
+</div>
+
       </div>
     </div>
   </header>
-
-    <!-- ==================== CV ==================== -->
-  <section id="CV">
-    <div class="wrap">
-      <p class="eyebrow">Curriculum Vitae</p>
-      <!-- EDIT: put cv.pdf in this folder. Update the date when you update it. -->
-      <p>My full CV is available here: <a href="cv.pdf">download CV</a>
-         </p>
-    </div>
-  </section>
 
   
 
