@@ -141,6 +141,29 @@
       margin-top: -0.3rem;
      }
 
+    .portrait-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-links {
+  margin-top: 0.8rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.hero-links a {
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.hero-links a:hover {
+  border-color: var(--accent);
+}
+
     /* ------------------------------------------------------------------
        SECTIONS
        ------------------------------------------------------------------ */
@@ -334,7 +357,13 @@
     <div class="wrap">
       <div class="hero-grid">
 
-        <img class="portrait" src="profile.jpg" alt="Stefania Merone" />
+        <div class="portrait-column">
+  <img class="portrait" src="profile.jpg" alt="Stefania Merone" />
+
+  <div class="hero-links">
+    <a href="cv.pdf">CV</a>
+  </div>
+</div>
 
         <div>
           <h1>Stefania Merone</h1>
