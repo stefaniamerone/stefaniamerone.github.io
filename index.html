@@ -203,8 +203,37 @@
     /* ------------------------------------------------------------------
        RESEARCH ENTRIES
        ------------------------------------------------------------------ */
+
     .paper { margin: 0 0 2.4rem; }
     .paper:last-child { margin-bottom: 0; }
+
+    .paper-row {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.paper-thumb {
+  flex: 0 0 120px;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.paper-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.paper-body {
+  flex: 1;
+  min-width: 0;
+}
 
     .paper-title {
       font-family: var(--serif);
@@ -368,7 +397,14 @@
     <div class="wrap">
       <p class="eyebrow">Research</p>
 
-     <div class="paper">
+    <div class="paper">
+  <div class="paper-row"
+    <div class="paper-thumb">
+      <img src="rick_meme.png" alt="Trust, but Verify paper image" />
+
+    </div>
+
+    <div class="paper-body">
   <h3 class="paper-title">
     Trust, but Verify: a Theory of Selective Verification <strong>(JMP)</strong>
   </h3>
@@ -386,6 +422,13 @@
        </div>
 
 <div class="paper">
+  <div class="paper-row">
+    <div class="paper-thumb">
+      <img src="paper1.jpg" alt="Commitment paper image" />
+
+    </div>
+
+    <div class="paper-body">
   <h3 class="paper-title">Commitment and the Identification of Temptation</h3>
   <p class="paper-authors">R. Suchy, S. Toussaert</p>
 
@@ -414,6 +457,13 @@ violated in the data.</p>
   </div>
 
       <div class="paper">
+  <div class="paper-row">
+    <div class="paper-thumb">
+      <img src="paper1.jpg" alt="CCC paper image" />
+
+    </div>
+
+    <div class="paper-body">
   <h3 class="paper-title">Continuity, Convexity, Centrality: Axiomatizing and Comparing Location Indices</h3>
 
   <details class="abstract">
