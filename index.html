@@ -176,7 +176,18 @@
 .hero-contact strong {
   font-weight: 600;
 }
+.button-link {
+  display: inline-block;
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--accent);
+}
 
+.button-link:hover {
+  border-color: var(--accent);
+}
     /* ------------------------------------------------------------------
        SECTIONS
        ------------------------------------------------------------------ */
@@ -399,7 +410,7 @@ details.abstract,
   <img class="portrait" src="profile.jpg" alt="Stefania Merone" />
 
   <div class="hero-links">
-    <a href="cv.pdf" target="_blank" rel="noopener noreferrer">Download my CV</a>
+    <a class="button-link" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download my CV</a>
   </div>
 </div>
 
@@ -487,7 +498,7 @@ details.abstract,
         </p>
 
         <div class="paper-links">
-          <a href="preanalysis_plan_multidimensional_temptation.pdf"target="_blank" rel="noopener noreferrer">PAP</a>
+          <a class="button-link" href="preanalysis_plan_multidimensional_temptation.pdf"target="_blank" rel="noopener noreferrer">PAP</a>
         </div>
       </div>
     </div>
@@ -510,8 +521,8 @@ details.abstract,
         </p>
 
         <div class="paper-links">
-          <a href="paper2.pdf">PDF</a>
-          <a href="paper2-slides.pdf">Slides</a>
+          <a class="button-link" href="paper2.pdf">PDF</a>
+          <a class="button-link" href="paper2-slides.pdf">Slides</a>
         </div>
       </div>
     </div>
